@@ -1,0 +1,1077 @@
+/* Profil utilisateur spécifique */
+/* Afficher profil */
+
+.content {
+    margin-left: 256px; /* Décalage pour laisser de la place à la sidebar */
+    padding: 20px;
+    flex: 1;
+    background-color: #f8fafc;
+
+}
+
+.container {
+    margin-top: 50px; /* Espacement avec la sidebar */
+}
+
+#success-alert {
+    margin: 20px auto;
+    max-width: 800px;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.titre-profil {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a365d;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+
+/* Conteneur du profil */
+.profil-container {
+    width: 80%; /* Largeur de la section */
+    margin: 0 auto; /* Centrer le conteneur */
+    padding: 20px;
+}
+
+/* Carte Profil */
+.profil-carte {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 40px;
+    font-size: 16px;
+    color: #374151;
+}
+
+.profil-carte p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #2d3748;
+    line-height: 1.6;
+}
+
+.profil-carte strong {
+    color: #1a365d;
+    font-weight: 600;
+}
+/* Boutons d'action */
+.profil-boutons-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+/* Bouton modifier */
+.profil-bouton-modifier {
+    background: linear-gradient(135deg, #4299e1, #3182ce);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.2);
+
+}
+
+.profil-bouton-modifier:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(66, 153, 225, 0.3);
+}
+
+/* Bouton supprimer */
+.profil-bouton-supprimer {
+    background: linear-gradient(135deg, #e53e3e, #c53030);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(229, 62, 62, 0.2);
+
+}
+
+.profil-bouton-supprimer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(229, 62, 62, 0.3);
+}
+
+/* Menu (sidebar) */
+
+/* Style pour le menu (sidebar) */
+.page-layout {
+    display: flex;
+    height: 100vh;
+}
+
+.menu-sidebar {
+    width: 200px; /* Largeur de la sidebar */
+    background-color: #1f2937; /* Gris foncé pour la sidebar */
+    color: white; /* Texte en blanc */
+    padding: 16px; /* Espacement interne */
+    height: 100vh; /* Hauteur de la page */
+    position: fixed; /* Rendre la sidebar fixe même en scrollant */
+    top: 0; /* Fixer le haut */
+    left: 0; /* Positionner la sidebar à gauche */
+    z-index: 1000;
+}
+
+/* Style pour la section contenant l'avatar et le nom */
+.menu-header {
+    text-align: center;
+    margin-bottom: 16px; /* Espacement en bas de l'avatar et du nom */
+}
+
+/* Avatar dans la sidebar */
+.menu-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Style du nom de l'utilisateur */
+.menu-username {
+    text-align: center; /* Centrer le texte */
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Nom de l'utilisateur */
+.menu-username p {
+    font-weight: bold; /* Mettre en gras le nom */
+    font-size: 16px;
+}
+
+/* Liste de navigation dans le menu */
+.menu-nav {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-nav li {
+    margin-bottom: 12px; /* Espacement entre les éléments de menu */
+    margin-bottom: 20px; /* Augmenter l'espacement entre les éléments de menu */
+}
+
+.menu-nav li a {
+    color: white; /* Texte blanc */
+    text-decoration: none; /* Enlever le soulignement */
+    display: block;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Transition au survol */
+}
+
+.menu-nav li a:hover {
+    background-color: #374151; /* Changer la couleur de fond au survol */
+}
+
+/* Style du bouton de déconnexion */
+.menu-logout-button {
+    background-color: #ef4444; /* Rouge pour le bouton */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transition de couleur */
+}
+
+.menu-logout-button:hover {
+    background-color: #dc2626; /* Rouge plus foncé au survol */
+}
+
+
+
+
+
+
+/* Profil utilisateur - Design moderne et coloré */
+
+/* Conteneur principal de la page de profil */
+.profil-page-container {
+    width: 85%;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #f9fafb;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre de la page de profil */
+.profil-page-title {
+    font-size: 34px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Sections du profil */
+.profil-sections {
+    margin-top: 30px;
+}
+
+/* Section individuelle pour chaque formulaire */
+.profil-form-section {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet de survol pour les sections */
+.profil-form-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Titre de chaque section */
+.profil-form-section h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2b6cb0;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Formulaires (inputs, selects, textarea) */
+.profil-form-section input,
+.profil-form-section select,
+.profil-form-section textarea,
+.profil-form-section-delete input,
+.profil-form-section-delete select,
+.profil-form-section-delete textarea {
+    width: 100%;
+    padding: 20px 25px;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    background-color: #f8fafc;
+    color: #2d3748;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+    line-height: 1.5;
+}
+/* Focus sur les champs de formulaire */
+.profil-form-section input:focus,
+.profil-form-section select:focus,
+.profil-form-section textarea:focus {
+    border-color: #3498db;
+    background-color: #ffffff;
+    outline: none;
+}
+
+/* Boutons de soumission et annulation */
+.profil-form-section button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.profil-form-section-delete button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Bouton de soumission */
+.profil-form-section button.submit-button {
+    background-color: #2ecc71; /* Vert */
+    color: white;
+    border: none;
+}
+/* Bouton de soumission */
+.profil-form-section-delete button.submit-button {
+    background-color: #2ecc71; /* Vert */
+    color: white;
+    border: none;
+}
+
+.profil-form-section button.submit-button:hover {
+    background-color: #27ae60; /* Vert foncé */
+    transform: scale(1.05);
+}
+.profil-form-section-delete button.submit-button:hover {
+    background-color: #27ae60; /* Vert foncé */
+    transform: scale(1.05);
+}
+
+/* Bouton d'annulation */
+.profil-form-section .cancel-button {
+    background-color: #e74c3c; /* Rouge */
+    color: white;
+    border: none;
+}
+/* Bouton d'annulation */
+.profil-form-section-delete .cancel-button {
+    background-color: #e74c3c; /* Rouge */
+    color: white;
+    border: none;
+}
+
+.profil-form-section .cancel-button:hover {
+    background-color: #c0392b; /* Rouge foncé */
+    transform: scale(1.05);
+}
+
+.profil-form-section-delete .cancel-button:hover {
+    background-color: #c0392b; /* Rouge foncé */
+    transform: scale(1.05);
+}
+
+/* Alertes success/error */
+.profil-alert {
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #e53e3e;
+}
+
+.profil-alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.profil-alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Bouton de déconnexion */
+.profil-logout-button {
+    background-color: #e67e22; /* Orange */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profil-logout-button:hover {
+    background-color: #d35400; /* Orange foncé */
+}
+
+/* Styles supplémentaires pour un design plus doux */
+.profil-page-container,
+.profil-form-section,
+.profil-form-section-delete {
+    background-color: #f3f4f6;
+}
+
+.profil-page-title {
+    color: #16a085; /* Couleur verte douce pour un ton calme et élégant */
+}
+
+.profil-form-section input,
+.profil-form-section select,
+.profil-form-section textarea,
+.profil-form-section-delete {
+    border: 1px solid #ecf0f1; /* Bordure douce */
+}
+
+/* Effet de transition sur le survol des boutons */
+.profil-form-section button:hover {
+    background-color: #30d1bc; /* Changer de couleur au survol */
+    transform: scale(1.05);
+}
+/* Effet de transition sur le survol des boutons */
+.profil-form-section-delete button:hover {
+    background-color: #db424f; /* Changer de couleur au survol */
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+/*Gerer les produits */
+/* Conteneur du tableau */
+.table-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre principal de la page des produits */
+.product-table-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Style pour le bouton d'ajout de produit */
+.add-product-btn {
+    background-color: #3498db; /* Bleu */
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.add-product-btn:hover {
+    background-color: #2980b9; /* Bleu foncé */
+}
+
+/* Table des produits */
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.product-table th, .product-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+/* Titre des colonnes */
+.product-table th {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+/* Style des lignes du tableau au survol */
+.product-table tbody tr:hover {
+    background-color: #f2f3f4;
+}
+
+/* Colonnes spécifiques */
+.product-table td {
+    color: #34495e;
+}
+
+/* Boutons d'édition et suppression */
+.edit-product-btn, .delete-product-btn {
+    padding: 10px 20px; /* La même taille pour les deux boutons */
+    font-weight: bold;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+    width: auto; /* Assurer une largeur automatique */
+    text-align: center; /* Centrer le texte dans les boutons */
+    display: inline-block; /* Assurer que les boutons se comportent de manière uniforme */
+    cursor: pointer;
+}
+
+/* Bouton Editer */
+.edit-product-btn {
+    background-color: #27ae60; /* Vert */
+    color: white;
+    border: none;
+    text-decoration: none;
+}
+
+
+.edit-product-btn:hover {
+    background-color: #2ecc71;
+    transform: scale(1.05);
+}
+
+/* Bouton Supprimer */
+.delete-product-btn {
+    background-color: #e74c3c; /* Rouge */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-product-btn:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Formulaire de suppression avec confirmation */
+.product-delete-form button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.product-delete-form button:hover {
+    background-color: #c0392b;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination .page-item {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.pagination .page-link {
+    padding: 10px 15px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    color: #3498db;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Style pour le conteneur des boutons d'édition et de suppression */
+.product-action-buttons {
+    display: flex;
+    gap: 10px; /* Espacement entre les boutons */
+    justify-content: flex-end; /* Aligne les boutons à droite */
+}
+
+
+
+
+
+
+
+
+
+
+/* Conteneur principal du formulaire - Version améliorée */
+.form-product-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Titre du formulaire - Plus élégant */
+.product-form-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.product-form-title:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    border-radius: 2px;
+}
+
+/* Style des sections et des lignes - Espacement amélioré */
+.product-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+/* Champ de formulaire - Animation subtile */
+.product-form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+/* Label des champs - Style moderne */
+.product-form-label {
+    font-size: 16px; /* Légèrement plus grand */
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 12px; /* Espacement accru */
+    display: block;
+    transition: all 0.3s ease;
+}
+
+/* Champ de formulaire - Design plus épuré */
+.product-form-input, 
+.product-form-select, 
+.product-form-textarea {
+    width: 100%;
+    padding: 20px 25px; /* Augmentation du padding */
+    font-size: 18px; /* Taille de police légèrement plus grande */
+    border-radius: 12px; /* Bords plus arrondis */
+    border: 2px solid #e2e8f0; /* Bordure légèrement plus épaisse */
+    background-color: #f8fafc;
+    color: #2d3748;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: inherit;
+    line-height: 1.5; /* Meilleur espacement interne du texte */
+    min-height: 65px; /* Hauteur minimale garantie */
+}
+
+.product-form-textarea {
+    min-height: 180px; /* Hauteur plus importante pour les zones de texte */
+    resize: vertical;
+    line-height: 1.6; /* Meilleure lisibilité */
+}
+/* Ajustement des selects pour qu'ils paraissent aussi grands */
+.product-form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 20px;
+    padding-right: 50px;
+}
+
+
+/* Effet au focus - Plus doux */
+.product-form-input:focus, 
+.product-form-select:focus, 
+.product-form-textarea:focus {
+    border-color: #4299e1;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+    background-color: #fff;
+}
+
+/* Boutons - Design plus moderne */
+.product-form-button {
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: inherit;
+}
+
+/* Bouton primaire - Dégradé de couleur */
+.product-form-button-primary {
+    background: linear-gradient(135deg, #3b82f6, #10b981);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.product-form-button-primary:hover {
+    background: linear-gradient(135deg, #2563eb, #059669);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+}
+
+/* Bouton secondaire - Style révisé */
+.product-form-button-secondary {
+    background: linear-gradient(135deg, #f97316, #ef4444);
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.product-form-button-secondary:hover {
+    background: linear-gradient(135deg, #ea580c, #dc2626);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+}
+
+/* Erreurs sur les champs - Plus visible */
+.product-form-invalid-feedback {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.product-form-input.is-invalid,
+.product-form-select.is-invalid,
+.product-form-textarea.is-invalid {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+/* Section image - Style amélioré */
+.product-form-image {
+    max-width: 180px;
+    margin-top: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    display: block;
+}
+
+
+/* Nouveau champ catégorie - Animation */
+#product-newCategoryField {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    margin-top: 0;
+}
+
+#product-newCategoryField.show {
+    max-height: 100px;
+    opacity: 1;
+    margin-top: 20px;
+}
+
+/* Champs demi-largeur - Ajustement */
+.product-form-half-width {
+    flex: 1 1 calc(50% - 13px);
+    min-width: 250px;
+}
+.product-form-half-width:first-child {
+    margin-right: 15px; /* Ajoute une marge à droite du premier champ */
+}
+/* Responsive - Meilleure adaptation */
+@media (max-width: 768px) {
+    .form-product-container {
+        padding: 25px;
+        margin: 20px 15px;
+        border-radius: 12px;
+    }
+
+    .product-form-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .product-form-half-width {
+        flex: 1 1 100%;
+        margin-right: 0 !important;
+
+    }
+
+    .product-form-button {
+        padding: 14px 20px;
+    }
+    @media (max-width: 768px) {
+        .product-form-input, 
+        .product-form-select, 
+        .product-form-textarea {
+            padding: 16px 18px;
+            font-size: 16px;
+            min-height: 56px;
+        }
+        
+        .product-form-textarea {
+            min-height: 130px;
+        }
+    }
+}
+
+/* Animation pour les champs */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.product-form-group {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+/* Délai d'animation pour chaque champ */
+.product-form-group:nth-child(1) { animation-delay: 0.1s; }
+.product-form-group:nth-child(2) { animation-delay: 0.2s; }
+.product-form-group:nth-child(3) { animation-delay: 0.3s; }
+.product-form-group:nth-child(4) { animation-delay: 0.4s; }
+
+
+
+
+/* ============================================= */
+/* DASHBOARD ADMIN - STYLE SPECIFIQUE */
+/* ============================================= */
+
+/* Conteneur principal */
+.admin-dashboard-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Titre du dashboard */
+.admin-dashboard-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Grille des statistiques */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Carte de statistique */
+.admin-stat-card {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Couleurs spécifiques pour chaque carte */
+.admin-stat-merchants {
+    background: linear-gradient(135deg, #3acc9b, #2a9473);
+}
+
+.admin-stat-users {
+    background: linear-gradient(135deg, #da93c7, #e961a5);
+}
+
+.admin-stat-products {
+    background: linear-gradient(135deg, #54a5db, #4978dc);
+}
+
+.admin-stat-growth {
+    background: linear-gradient(135deg, #ebb75c, #c58946);
+}
+
+/* Texte dans les cartes */
+.admin-stat-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.admin-stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+/* ============================================= */
+/* RESPONSIVE DESIGN */
+/* ============================================= */
+
+@media (max-width: 1024px) {
+    .admin-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .admin-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-dashboard-title {
+        font-size: 1.75rem;
+    }
+}
+
+
+
+
+
+
+/* Alertes Admin */
+.admin-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 18px 25px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transform: translateX(150%);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.admin-alert.show {
+    transform: translateX(0);
+}
+
+.admin-alert-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-left: 5px solid #047857;
+}
+
+.admin-alert-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border-left: 5px solid #b45309;
+}
+
+.admin-alert-error {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border-left: 5px solid #b91c1c;
+}
+
+.custom-alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px 20px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.custom-alert-success.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+
+/* Avatar avec initiale */
+.admin-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 auto 15px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Version alternative avec couleur dynamique */
+.admin-avatar {
+    --hue: {{ crc32(Auth::user()->name) % 360 }};
+    background: linear-gradient(135deg, 
+        hsl(var(--hue), 80%, 60%), 
+        hsl(calc(var(--hue) + 120), 80%, 60%)
+    );
+}
+
+
+
+
+/* Fiiiiiiltrage */
+
+/* Formulaire de filtre */
+.product-filter-form {
+    display: flex;
+    gap: 20px; /* Augmenté pour plus d'espace entre les éléments */
+    margin-bottom: 30px; /* Augmenté pour espacer du contenu suivant */
+    justify-content: flex-start; /* Aligner à gauche */
+    flex-wrap: wrap; /* Permet aux éléments de s'adapter à la taille de l'écran */
+}
+
+/* Champs de saisie (input et select) */
+.product-filter-input,
+.product-filter-select {
+    padding: 10px 15px; /* Augmenté pour un meilleur confort */
+    border-radius: 8px; /* Bordure arrondie pour plus de douceur */
+    border: 1px solid #ccc;
+    width: 250px; /* Largeur fixée pour les champs de saisie */
+    box-sizing: border-box; /* Assurer que le padding et la bordure ne dépassent pas la largeur */
+    font-size: 14px; /* Taille de police un peu plus grande pour la lisibilité */
+    margin-bottom: 10px; /* Espacement au bas des champs */
+    transition: border-color 0.3s ease; /* Effet de transition sur la bordure */
+}
+
+/* Changement de couleur de bordure au focus */
+.product-filter-input:focus,
+.product-filter-select:focus {
+    border-color: #3490dc; /* Bordure bleue au focus */
+    outline: none; /* Supprime le contour par défaut */
+}
+
+/* Bouton de filtrage */
+.product-filter-button {
+    padding: 10px 20px; /* Augmenté pour un bouton plus confortable */
+    background-color: #3490dc;
+    color: white;
+    border: none;
+    border-radius: 8px; /* Bordure arrondie */
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition de couleur et agrandissement */
+    font-size: 14px; /* Taille de la police du bouton */
+}
+
+/* Effet au survol du bouton */
+.product-filter-button:hover {
+    background-color: #2980b9; /* Bleu foncé au survol */
+    transform: scale(1.05); /* Agrandissement léger du bouton */
+}
+
+/* Pour garantir que le formulaire soit bien espacé dans des écrans plus petits */
+@media (max-width: 768px) {
+    .product-filter-form {
+        flex-direction: column; /* Disposer les éléments en colonne sur petit écran */
+        align-items: flex-start; /* Aligner les éléments à gauche */
+    }
+
+    .product-filter-input,
+    .product-filter-select {
+        width: 100%; /* Prendre toute la largeur de l'écran sur petit écran */
+    }
+}
