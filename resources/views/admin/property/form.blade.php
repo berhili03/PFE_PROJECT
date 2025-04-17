@@ -12,7 +12,13 @@
             @method($property->exists ? 'put' : 'post')
 
             <div class="product-form-row">
-                @include('shared.input', ['class'=>'col product-form-input', 'label' => 'Nom du consommateur', 'name' => 'name', 'value' => $user->name])
+                    @include('shared.input', [
+                    'class' => 'col product-form-input',
+                    'label' => 'Nom du consommateur',
+                    'name' => 'name',
+                    'value' => $property->user->name,
+                    'attributes' => ['readonly' => 'readonly']
+                ])
             </div>
 
             <div class="product-form-row">

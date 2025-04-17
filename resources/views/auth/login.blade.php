@@ -50,6 +50,10 @@
             <div class="mt-4">
                 <!-- Label du champ -->
                 <x-input-label for="password" :value="__('Mot de passe')" />
+ <!-- Champ Mot de passe -->
+ <div class="mt-4">
+                <!-- Label du champ -->
+                <x-input-label for="password" :value="__('Mot de passe')" />
                 <!-- Champ de saisie du mot de passe -->
                 <x-text-input
                     id="password"
@@ -63,13 +67,18 @@
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
-            <!-- Case à cocher "Se souvenir de moi" -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring focus:ring-indigo-500" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('remember_me') }}</span>
-                </label>
-            </div>
+<!-- Case à cocher "Se souvenir de moi" -->
+<div class="block mt-4">
+    <label for="remember_me" class="inline-flex items-center">
+        <input id="remember_me" type="checkbox" 
+            class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring focus:ring-indigo-500" 
+            name="remember" 
+            {{ old('remember') ? 'checked' : '' }} 
+        >
+        <span class="ml-2 text-sm text-gray-600">{{ __('remember_me') }}</span>
+    </label>
+</div>
+
 
             <!-- Liens et bouton de soumission -->
             <div class="flex items-center justify-between mt-6">

@@ -7,6 +7,8 @@ use App\Models\Property;
 use App\Http\Requests\Admin\PropertyFormRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+
 
 class PropertyController extends Controller
 {
@@ -81,16 +83,20 @@ class PropertyController extends Controller
             ->with('success', 'Le produit a été ajouté avec succès');
     }
 
-    public function edit(Property $property)
-    {
-        $categories = Category::pluck('name', 'name')->toArray();
-        $categories['Autre'] = 'Autre';
 
-        return view('admin.property.form', [
-            'property' => $property,
-            'categories' => $categories
-        ]);
-    }
+
+
+        public function edit(Property $property)
+        {
+            $categories = Category::pluck('name', 'name')->toArray();
+            $categories['Autre'] = 'Autre';
+
+            return view('admin.property.form', [
+                'property' => $property,
+                'categories' => $categories
+            ]);
+        }
+
 
     public function update(PropertyFormRequest $request, Property $property)
     {

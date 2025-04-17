@@ -153,3 +153,7 @@ Route::post('reset-password', [NewPasswordController::class, 'store'])
 
     // Route pour supprimer le compte de l'utilisateur
 Route::delete('/user/delete', [UserController::class, 'destroy'])->name('user.delete')->middleware('auth');
+
+
+//remember me 
+
