@@ -23,6 +23,9 @@
     <ul class="menu-nav">
         <li><a href="{{ route('consommateur.dashboard') }}">Accueil</a></li>
         <li><a href="{{ route('profile.consommateur.show') }}">Afficher Profil</a></li>
+        <li><a class="nav-link" href="{{ route('consommateur.commercants.index') }}">Consulter des commerçants</a></li>
+        <li> <a class="nav-link" href="{{ route('consommateur.commercants.suivis') }}">Commerçants suivis</a>
+        </li>
         <li>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

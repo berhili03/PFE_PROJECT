@@ -53,7 +53,25 @@ class User extends Authenticatable
 
   
     
-
+    public function commercantsSuivis()
+    {
+        return $this->belongsToMany(
+            User::class, 
+            'suivis', 
+            'consommateur_id', 
+            'commercant_id'
+        )->withTimestamps();
+    }
+    
+    public function consommateursSuiveurs()
+    {
+        return $this->belongsToMany(
+            User::class, 
+            'suivis', 
+            'commercant_id', 
+            'consommateur_id'
+        )->withTimestamps();
+    }
 
 
 public function sendPasswordResetNotification($token)
@@ -61,5 +79,10 @@ public function sendPasswordResetNotification($token)
     $this->notify(new CustomResetPassword($token));
 }
 
+
+public function produits()
+{
+    return $this->hasMany(Property::class, 'user_id');
+}
 
 }

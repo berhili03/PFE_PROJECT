@@ -117,9 +117,38 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 
+
+
+
+
+
+
 Route::middleware(['auth', 'role:Consommateur'])->group(function () {
     Route::get('/consommateur/dashboard', [ConsommateurController::class, 'index'])->name('consommateur.dashboard');
+    Route::get('/products', [\App\Http\Controllers\Consommateur\ProductController::class, 'index'])->name('products.index');
+    Route::get('/products/{id}', [\App\Http\Controllers\Consommateur\ProductController::class, 'show'])->name('products.show');
+    Route::get('/commercants', [\App\Http\Controllers\Consommateur\CommercantController::class, 'index'])->name('consommateur.commercants.index');
+    Route::get('/commercants/{id}', [\App\Http\Controllers\Consommateur\CommercantController::class, 'show'])->name('consommateur.commercants.show');
+    Route::post('/commercants/{id}/suivre', [\App\Http\Controllers\Consommateur\CommercantController::class, 'suivre'])->name('consommateur.commercants.suivre');
+    Route::delete('/commercants/{id}/neplussuivre', [\App\Http\Controllers\Consommateur\CommercantController::class, 'nePlusSuivre'])->name('consommateur.commercants.neplussuivre');
+    Route::get('/commercants-suivis', [\App\Http\Controllers\Consommateur\CommercantController::class, 'suivis'])->name('consommateur.commercants.suivis');
 });
+
+Route::middleware(['auth', 'role:Consommateur'])->group(function () {
+    Route::get('/products/{id}', [App\Http\Controllers\Consommateur\ProductController::class, 'show'])
+        ->name('products.show');
+    // Autres routes pour les consommateurs...
+});
+
+
+
+
+
+
+
+
+
+
 
 Route::middleware(['auth', 'role:Commercant'])->group(function () {
     Route::get('/commercant/dashboard', [CommercantController::class, 'index'])->name('commercant.dashboard');
@@ -155,5 +184,6 @@ Route::post('reset-password', [NewPasswordController::class, 'store'])
 Route::delete('/user/delete', [UserController::class, 'destroy'])->name('user.delete')->middleware('auth');
 
 
-//remember me 
+
+
 

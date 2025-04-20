@@ -17,6 +17,8 @@
             <ul class="menu-nav">
                 <li><a href="{{ route('consommateur.dashboard') }}">Accueil</a></li>
                 <li><a href="{{ route('profile.showConsommateur') }}">Afficher Profil</a></li>
+                <li><a href="{{ route('consommateur.products.index') }}">Voir les produits</a></li>
+
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

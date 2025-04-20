@@ -1,0 +1,287 @@
+
+
+/* Variables de couleurs */
+:root {
+    --primary-color: #3498db;
+    --primary-hover: #2980b9;
+    --secondary-color: #f8f9fa;
+    --text-color: #333;
+    --text-light: #6c757d;
+    --accent-color: #e74c3c;
+    --border-color: #eaeaea;
+    --card-bg: #fff;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --border-radius: 10px;
+    --transition: all 0.3s ease;
+}
+
+/* Styles globaux */
+body {
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* En-tête de section */
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title:after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 4px;
+    background-color: var(--primary-color);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-top: 20px;
+}
+
+/* Formulaire de recherche - MODIFIÉ */
+.search-container {
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.search-form {
+    display: flex;
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    height: 56px; /* Hauteur fixe pour tout le formulaire */
+}
+
+.search-input-wrapper {
+    flex: 1;
+    position: relative;
+    background-color: white;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    color: var(--text-light);
+}
+
+.search-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0 20px 0 50px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    height: 100%;
+    min-width: 120px; /* Largeur minimale pour le bouton */
+}
+
+.search-button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Grille de commerçants */
+.merchants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 25px;
+}
+
+.merchant-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 25px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.merchant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.merchant-card:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.merchant-card:hover:before {
+    width: 8px;
+}
+
+.merchant-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.merchant-icon i {
+    font-size: 24px;
+    color: var(--primary-color);
+}
+
+.merchant-details {
+    flex: 1;
+}
+
+.merchant-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.merchant-address, .merchant-phone {
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.merchant-address i, .merchant-phone i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    width: 16px;
+}
+
+.merchant-link {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 20px;
+    transition: var(--transition);
+    justify-content: center;
+}
+
+.merchant-link i {
+    margin-left: 10px;
+    transition: var(--transition);
+}
+
+.merchant-link:hover {
+    background-color: var(--primary-hover);
+    color: white;
+}
+
+.merchant-link:hover i {
+    transform: translateX(3px);
+}
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.page-link {
+    color: var(--text-color);
+    padding: 12px 18px;
+    border: none;
+    background-color: white;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.page-link:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    z-index: 2;
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    z-index: 3;
+}
+
+.page-item.disabled .page-link {
+    color: #ccc;
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .merchants-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+    
+    .search-form {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .search-input-wrapper {
+        height: 56px;
+    }
+    
+    .search-button {
+        height: 56px;
+        width: 100%;
+    }
+}
