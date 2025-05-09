@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MerchantController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -155,3 +156,8 @@ Route::post('reset-password', [NewPasswordController::class, 'store'])
 // Route pour supprimer le compte de l'utilisateur
 Route::delete('/user/delete', [UserController::class, 'destroy'])->name('user.delete')->middleware('auth');
 
+Route::middleware(['auth'])->group(function () {
+    Route::post('/produits/{produit}/commentaires', [CommentController::class, 'store'])->name('commentaires.store');
+    Route::put('/commentaires/{commentaire}', [CommentController::class, 'update'])->name('commentaires.update');
+    Route::delete('/commentaires/{commentaire}', [CommentController::class, 'destroy'])->name('commentaires.destroy');
+});
