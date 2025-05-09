@@ -17,7 +17,6 @@
         <div class="profil-carte">
             <p><strong>Nom complet :</strong> {{ $user->name }}</p>
             <p><strong>Email :</strong> {{ $user->email }}</p>
-            <p><strong>Date de naissance :</strong> {{ $user->dateNaissance }}</p>
             <p><strong>Adresse :</strong> {{ $user->adresse }}</p>
             <p><strong>Rôle :</strong> {{ $user->role }}</p>
             <p><strong>Téléphone :</strong> {{ $user->tel }}</p>

@@ -51,37 +51,46 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-       
-        //dd($request->all()); // Affiche toutes les données envoyées
-
-        $request->validate([
+        // Règles de validation conditionnelles pour le nom de la boutique
+        $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'dateNaissance' => ['required','date'],
-            'sexe' => ['required','string','in:Femme,Homme'],
+            'sexe' => ['required', 'string', 'in:Femme,Homme'],
             'role' => ['required', 'in:Consommateur,Commercant'],
-            'tel' => ['required','string'],
-            'adresse' => ['required','string'],
+            'tel' => ['required', 'string'],
+            'adresse' => ['required', 'string'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = User::create([
+        ];
+        
+        // Ajouter la validation du nom de la boutique si le rôle est Commercant
+        if ($request->role === 'Commercant') {
+            $rules['nom_boutique'] = ['required', 'string', 'max:255'];
+        }
+        
+        $request->validate($rules);
+        
+        // Construction des données pour la création de l'utilisateur
+        $userData = [
             'name' => $request->name,
-            'dateNaissance' => $request->dateNaissance,
             'sexe' => $request->sexe,
             'role' => $request->role,
             'tel' => $request->tel,
             'adresse' => $request->adresse,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
-
-      
-
+        ];
+        
+        // Ajouter le nom de la boutique uniquement si le rôle est Commercant
+        if ($request->role === 'Commercant') {
+            $userData['store_name'] = $request->store_name;
+        }
+        
+        $user = User::create($userData);
+        
         event(new Registered($user));
-
+        
         Auth::login($user);
-
+        
         return redirect($this->redirectTo($user));
     }
 

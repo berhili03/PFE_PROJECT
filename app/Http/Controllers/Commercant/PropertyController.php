@@ -186,4 +186,11 @@ class PropertyController extends Controller
     ];
 }
 
+
+
+public function likedBy()
+{
+    return $this->belongsToMany(User::class, 'likes', 'produit_id', 'user_id');
+}
+
 }

@@ -22,5 +22,17 @@ class UserController extends Controller
         // Rediriger l'utilisateur vers la page d'accueil ou une page de confirmation
         return redirect('/')->with('status', 'Votre compte a été supprimé avec succès.');
     }
+    public function likes()
+{
+    return $this->belongsToMany(Property::class, 'likes', 'user_id', 'produit_id');
+}
+
+public function aime($produitId)
+{
+    return $this->likes()->where('produit_id', $produitId)->exists();
+}
+
+
+
 }
 

@@ -1,13 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="admin-dashboard-container">
-        <h1 class="admin-dashboard-title" id="adminWelcomeTitle">Bienvenue Admin 👑</h1>
-        
-        <div class="admin-stats-grid">
-            <!-- Vos cartes statistiques ici -->
-        </div>
-    </div>
+
         
         <div class="admin-stats-grid">
             <div class="admin-stat-card admin-stat-merchants">
@@ -29,19 +23,5 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const welcomeTitle = document.getElementById('adminWelcomeTitle');
-            const hour = new Date().getHours();
-            let greeting;
-            
-            if (hour < 18 && hour > 4) {
-                greeting = "Bonjour Admin ☀️";
-            }  else {
-                greeting = "Bonsoir Admin 🌙";
-            }
-            
-            welcomeTitle.textContent = greeting;
-        });
-    </script>
+   
 @endsection

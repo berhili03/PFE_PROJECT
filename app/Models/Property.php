@@ -14,34 +14,36 @@ class Property extends Model
         'prix',
         'marque',
         'image',
-        'category_name', // important si tu l'utilises
+        'category_name',
+        'user_id',
     ];
 
-public function category ()
-{
-    return $this->belongsTo(Category::class);
-}
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_name', 'name');
+    }
 
-public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'product_id');
+    }
+    
+    public function likedBy()
+    {
+        return $this->belongsToMany(User::class, 'likes', 'produit_id', 'user_id');
+    }
 
-public function properties()
-{
-    return $this->hasMany(Property::class);
-}
-
-
-
-protected static function booted()
-{
-    static::creating(function ($property) {
-        if (auth()->check()) {
-            $property->user_id = auth()->id();
-        }
-    });
-}
-
+    protected static function booted()
+    {
+        static::creating(function ($property) {
+            if (auth()->check()) {
+                $property->user_id = auth()->id();
+            }
+        });
+    }
 }

@@ -3,158 +3,168 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PropertyRequest;
 use App\Models\Property;
-use App\Http\Requests\Admin\PropertyFormRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
-
 
 class PropertyController extends Controller
 {
-    public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        $query = Property::query();
-    
-        // Recherche par nom de produit ou marque
-        if (request()->filled('search')) {
-            $search = request('search');
-            $query->where(function ($q) use ($search) {
-                $q->where('nomProduit', 'like', "%{$search}%")
-                  ->orWhere('marque', 'like', "%{$search}%");
-            });
-        }
-    
-        // Filtrage par catégorie
-        if (request()->filled('categorie')) {
-            $query->where('category_name', request('categorie'));
+        // Query builder for properties
+        $query = Property::query()->with('user');
+
+        // Search by product name
+        if ($request->filled('search')) {
+            $query->where('nomProduit', 'like', '%' . $request->search . '%');
         }
 
-        // Filtrage par nom du commerçant
-        if (request()->filled('commercant')) {
-            $commercant = request('commercant');
-            $query->whereHas('user', function ($q) use ($commercant) {
-                $q->where('name', 'like', "%{$commercant}%");
+        // Search by merchant/store name
+        if ($request->filled('commercant')) {
+            // Join with users table to search by merchant name
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where(function($subquery) use ($request) {
+                    // Search in both name and store_name fields
+                    $subquery->where('name', 'like', '%' . $request->commercant . '%')
+                            ->orWhere('store_name', 'like', '%' . $request->commercant . '%');
+                });
             });
         }
 
-    
-        // Récupérer les produits filtrés
-        $properties = $query->with('user')->orderBy('created_at', 'desc')->paginate(8)->withQueryString();
-    
-        // Pour remplir le select des catégories dans la vue
-        $categories = Category::pluck('name')->toArray();
-    
+        // Filter by category
+        if ($request->filled('categorie')) {
+            $query->where('category_name', $request->categorie);
+        }
+
+        // Get categories for filter dropdown
+        $categories = Property::distinct()->pluck('category_name');
+
+        // Get results with pagination
+        $properties = $query->latest()->paginate(10)->withQueryString();
+
         return view('admin.property.index', compact('properties', 'categories'));
     }
-    
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        $categories = Category::pluck('name', 'name')->toArray();
-        $categories['Autre'] = 'Autre';
-
-        return view('admin.property.form', [
-            'property' => new Property(),
-            'categories' => $categories
-        ]);
+        $property = new Property();
+        $property->user = auth()->user();
+        $categories = Property::distinct()->pluck('category_name', 'category_name');
+        
+        return view('admin.property.form', compact('property', 'categories'));
     }
 
-    public function store(PropertyFormRequest $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\PropertyRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(PropertyRequest $request)
     {
-        $validated = $request->validated();
-
-        // Gestion de l'image
-        $imagePath = $this->handleImageUpload($request);
-
-        // Gestion de la catégorie
-        $categoryName = $this->handleCategory($request, $validated);
-
-        Property::create([
-            'nomProduit' => $validated['nomProduit'],
-            'description' => $validated['description'],
-            'prix' => $validated['prix'],
-            'marque' => $validated['marque'],
-            'image' => $imagePath,
-            'category_name' => $categoryName,
-        ]);
-
-        return redirect()->route('admin.property.index')
-            ->with('success', 'Le produit a été ajouté avec succès');
+        $property = new Property();
+        $property->user_id = auth()->id();
+        
+        return $this->saveProperty($request, $property);
     }
 
-
-
-
-        public function edit(Property $property)
-        {
-            $categories = Category::pluck('name', 'name')->toArray();
-            $categories['Autre'] = 'Autre';
-
-            return view('admin.property.form', [
-                'property' => $property,
-                'categories' => $categories
-            ]);
-        }
-
-
-    public function update(PropertyFormRequest $request, Property $property)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Property  $property
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Property $property)
     {
-        $validated = $request->validated();
-
-        // Gestion de la catégorie
-        $categoryName = $this->handleCategory($request, $validated);
-
-        // Gestion de l'image
-        $imagePath = $this->handleImageUpload($request, $property);
-
-        $property->update([
-            'nomProduit' => $validated['nomProduit'],
-            'description' => $validated['description'],
-            'prix' => $validated['prix'],
-            'marque' => $validated['marque'],
-            'image' => $imagePath,
-            'category_name' => $categoryName,
-        ]);
-
-        return redirect()->route('admin.property.index')
-            ->with('success', 'Le produit a été mis à jour avec succès');
+        $categories = Property::distinct()->pluck('category_name', 'category_name');
+        return view('admin.property.form', compact('property', 'categories'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\PropertyRequest  $request
+     * @param  \App\Models\Property  $property
+     * @return \Illuminate\Http\Response
+     */
+    public function update(PropertyRequest $request, Property $property)
+    {
+        return $this->saveProperty($request, $property);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Property  $property
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Property $property)
     {
-        // Supprimer l'image associée si elle existe
-        if ($property->image && Storage::exists('public/' . $property->image)) {
-            Storage::delete('public/' . $property->image);
-        }
-
-        $property->delete();
-
-        return redirect()->route('admin.property.index')
-            ->with('success', 'Le produit a été supprimé avec succès');
-    }
-
-    // Méthodes privées pour factoriser le code
-    private function handleImageUpload($request, $property = null)
-    {
-        if ($request->hasFile('image')) {
-            // Supprimer l'ancienne image si elle existe
-            if ($property && $property->image) {
-                Storage::delete('public/' . $property->image);
-            }
-            return $request->file('image')->store('images', 'public');
+        // Delete image if exists
+        if ($property->image) {
+            Storage::delete($property->image);
         }
         
-        return $property->image ?? null;
+        $property->delete();
+        
+        return redirect()->route('admin.property.index')
+            ->with('success', 'Le produit a été supprimé avec succès.');
     }
 
-    private function handleCategory($request, $validated)
+    /**
+     * Save property data for both create and update.
+     *
+     * @param  \App\Http\Requests\PropertyRequest  $request
+     * @param  \App\Models\Property  $property
+     * @return \Illuminate\Http\Response
+     */
+    private function saveProperty(PropertyRequest $request, Property $property)
     {
-        if ($validated['categorie'] === 'Autre' && $request->filled('new_categorie')) {
-            $newCategory = Category::firstOrCreate(['name' => $request->new_categorie]);
-            return $newCategory->name;
+        // Handle new category if selected
+        $category = $request->categorie;
+        if ($category === 'Autre' && $request->filled('new_categorie')) {
+            $category = $request->new_categorie;
         }
 
-        return $validated['categorie'];
+        // Populate property with form data
+        $property->nomProduit = $request->nomProduit;
+        $property->description = $request->description;
+        $property->marque = $request->marque;
+        $property->prix = $request->prix;
+        $property->category_name = $category;
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($property->exists && $property->image) {
+                Storage::delete($property->image);
+            }
+            
+            $property->image = $request->file('image')->store('products', 'public');
+        }
+
+        $property->save();
+
+        $action = $property->wasRecentlyCreated ? 'créé' : 'modifié';
+        return redirect()->route('admin.property.index')
+            ->with('success', "Le produit a été {$action} avec succès.");
     }
+    public function show(Property $property)
+    {
+        $comments = $property->comments()->with('user')->latest()->get(); // on récupère les commentaires liés au produit
+        return view('admin.property.show', compact('property', 'comments'));
+    }
+    
 }
